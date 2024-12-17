@@ -6,12 +6,10 @@ import java.util.Map;
 public class SalesTracker {
     private ConcurrentHashMap<String, Integer> sales = new ConcurrentHashMap<>();
 
-    // Добавление товара
     public void addSale(String product, int quantity) {
         sales.merge(product, quantity, Integer::sum);
     }
 
-    // Вывод всех продаж
     public void printSales() {
         System.out.println("Список проданных товаров:");
         for (Map.Entry<String, Integer> entry : sales.entrySet()) {
@@ -19,12 +17,10 @@ public class SalesTracker {
         }
     }
 
-    // Подсчет общей суммы продаж
     public int getTotalSales() {
         return sales.values().stream().mapToInt(Integer::intValue).sum();
     }
 
-    // Поиск самого популярного товара
     public String getMostPopularProduct() {
         return sales.entrySet()
                 .stream()
@@ -36,7 +32,6 @@ public class SalesTracker {
     public static void main(String[] args) {
         SalesTracker tracker = new SalesTracker();
 
-        // Добавляем продажи
         tracker.addSale("Apple", 10);
         tracker.addSale("Banana", 20);
         tracker.addSale("Apple", 5);

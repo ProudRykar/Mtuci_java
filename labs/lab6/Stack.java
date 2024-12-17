@@ -7,19 +7,16 @@ public class Stack<T> {
 
   @SuppressWarnings("unchecked")
   public Stack(int capacity) {
-      data = (T[]) new Object[capacity]; // Без аннотации @SuppressWarnings("unchecked") из-за особенностей языка Java тот предупреждает о небезопасности приведения Object
+      data = (T[]) new Object[capacity];
       size = 0;
   }
 
-  // Добавление элемента в стек
   public void push(T element) {
       if (size == data.length) {
           throw new StackOverflowError("Стек переполнен");
       }
       data[size++] = element;
   }
-
-  // Удаление верхнего элемента из стека
   public T pop() {
       if (size == 0) {
           throw new EmptyStackException();
@@ -29,7 +26,6 @@ public class Stack<T> {
       return element;
   }
 
-  // Получение верхнего элемента стека без удаления
   public T peek() {
       if (size == 0) {
           throw new EmptyStackException();
@@ -37,8 +33,22 @@ public class Stack<T> {
       return data[size - 1];
   }
 
-  // Проверка, пуст ли стек
   public boolean isEmpty() {
       return size == 0;
   }
+
+    public static void main(String[] args) {
+        Stack<Integer> stack = new Stack<>(10);
+
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+
+        System.out.println(stack.pop()); // Вывод: 3
+        System.out.println(stack.peek()); // Вывод: 2
+        stack.push(4);
+        System.out.println(stack.pop()); // Вывод: 4
+    }
 }
+
+

@@ -6,11 +6,9 @@ import java.util.*;
 
 public class TopWords {
     public static void main(String[] args) {
-        // Указываем путь к файлу
-        String filePath = "C:\\text.txt";
+        String filePath = "/home/proudrykar/text.txt";
         File file = new File(filePath);
 
-        // Считываем содержимое файла
         Map<String, Integer> wordCount = new HashMap<>();
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNext()) {
@@ -22,7 +20,6 @@ public class TopWords {
             return;
         }
 
-        // Сортируем слова по частоте
         List<Map.Entry<String, Integer>> sortedWords = new ArrayList<>(wordCount.entrySet());
         sortedWords.sort((e1, e2) -> e2.getValue().compareTo(e1.getValue()));
 
